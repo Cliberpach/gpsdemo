@@ -407,6 +407,20 @@ class TablaDetalleSeeder extends Seeder
         $detalle->tabla_id = 13;
         $detalle->save();
      
+        //tipo dispositivo
+        $detalle = new Detalle();
+        $detalle->descripcion = "MEITRACK";
+        $detalle->simbolo = 'MEITRACK';
+        $detalle->estado = 'ACTIVO';
+        $detalle->tabla_id = 14;
+        $detalle->save();
+
+        $detalle = new Detalle();
+        $detalle->descripcion = "TRACKER303";
+        $detalle->simbolo = 'TRACKER303';
+        $detalle->estado = 'ACTIVO';
+        $detalle->tabla_id = 14;
+        $detalle->save();
 
 
     }

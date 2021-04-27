@@ -383,6 +383,6 @@
     }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS6qv64RYCHFJOygheJS7DvBDYB0iV2wI&libraries=geometry&callback=initMap" async
+    <script src="https://maps.googleapis.com/maps/api/js?key={{keymap()}}&libraries=geometry&callback=initMap" async
     ></script>
 @endpush

@@ -205,8 +205,8 @@ Route::prefix('usuario')->group(function()
 /// llamado informacion mampa
 Route::post('/gps','DispositivoController@gps')->name('gps')->middleware('auth');
 Route::get('/gpsprueba','DispositivoController@prueba')->name('pruebagps')->middleware('auth');
-Route::post('/gpsestado','DispositivoController@gpsestado')->name('gpsestado');
-Route::post('/gpsmovimiento','DispositivoController@movimiento')->name('gpsmovimiento');
+Route::post('/gpsestado','DispositivoController@gpsestado')->name('gpsestado')->middleware('auth');
+Route::post('/gpsmovimiento','DispositivoController@movimiento')->name('gpsmovimiento')->middleware('auth');
 
 Route::prefix('reporte')->group(function() 
 {

@@ -702,9 +702,5 @@ $('#logo_icon').val('')
             }
             return true;
        }
-      
-
-// Usage example
-
     </script>
 @endpush

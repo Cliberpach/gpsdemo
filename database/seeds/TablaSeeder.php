@@ -86,5 +86,10 @@ class TablaSeeder extends Seeder
             $tabla->descripcion = 'MARCA';
             $tabla->sigla = 'MARCA';
             $tabla->save();
+            //14
+            $tabla = new General();
+            $tabla->descripcion = 'TIPO DE DISPOSITIVO';
+            $tabla->sigla = 'TIPO DE DISPOSITIVO';
+            $tabla->save();
     }
 }

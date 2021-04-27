@@ -454,6 +454,7 @@
                         form.submit();
            
               } 
+              else 
               {
             toastr.error('Falta agregar el mensaje para registrar clientes','Error');  
               }
@@ -534,19 +535,5 @@
             }
             return true;
         }
-       /* function validarDatosRedesContacto()
-        {
-            var facebook=$("#facebook").val();
-            var whatsapp=$("#whatsapp").val();
-            var nombre_contacto=$("#nombre_contacto").val();
-            var tipo_documento_contacto=$("#tipo_documento_contacto").val();
-            var documento_contacto=$("#documento_contacto").val();      
-            if ( facebook.length === 0
-             || whatsapp.length === 0 
-             ) {
-                return false;
-            }
-            return true;
-       }*/
     </script>
 @endpush

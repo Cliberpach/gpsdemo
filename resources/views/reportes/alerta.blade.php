@@ -190,12 +190,16 @@
     <script src="{{asset('Inspinia/js/plugins/dataTables/datatables.min.js')}}"></script>
     <script src="{{asset('Inspinia/js/plugins/dataTables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{ asset('Inspinia/js/plugins/clockpicker/clockpicker.js') }}" ></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{keymap()}}"></script>
     <script>
         var map;   
 	var markers=[];
     var markers_ruta=[];
     var datos=[];
     var pdf=[];
+    window.onload = function() {
+  initMap();
+};
     function descargarpdf()
     {
         if(pdf.length==0)
@@ -417,7 +421,7 @@
 
                                      
             $.ajax({
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'9&key=AIzaSyAS6qv64RYCHFJOygheJS7DvBDYB0iV2wI', 
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'9&key={{keymap()}}', 
             type: 'GET',
             async    : false,
             timeout: 7200000,
@@ -506,6 +510,5 @@ function setMapOnAll(map) {
         }
 	
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS6qv64RYCHFJOygheJS7DvBDYB0iV2wI&callback=initMap" async
-    ></script>
+
 @endpush
