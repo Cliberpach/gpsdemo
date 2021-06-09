@@ -188,7 +188,7 @@
     <script src="{{asset('Inspinia/js/plugins/dataTables/datatables.min.js')}}"></script>
     <script src="{{asset('Inspinia/js/plugins/dataTables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{ asset('Inspinia/js/plugins/clockpicker/clockpicker.js') }}" ></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{keymap()}}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{keymap()}}&libraries=geometry"></script>
     <script>
         var map;   
 	var map2;
@@ -362,7 +362,7 @@
                         },
                
             }).done(function (returnValue){
-              //console.log(result);
+              console.log(returnValue);
               agregar(returnValue);
       
  

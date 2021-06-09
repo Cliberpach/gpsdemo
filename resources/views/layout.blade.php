@@ -200,7 +200,10 @@
 
 
 
-
+    <script>
+    window.PUSHER_APP_KEY = '{{ config('broadcasting.connections.pusher.key') }}';
+    window.APP_DEBUG = {{ config('app.debug') ? 'true' : 'false' }};
+</script>
 <script  src="{{ asset('js/app.js') }}" ></script>
 <script>
   </script>

@@ -98,6 +98,7 @@
 @push('scripts-mapas')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{keymap()}}"></script>
 <script type="text/javascript"  src="{{asset('js/info/infobox.js') }}" ></script>
+<script type="text/javascript" src="{{asset('js/QUECLINK/tracker.js')}}"></script>
 <script>
       var arreglo=[];
       var info_=[];
@@ -431,7 +432,7 @@ function buscar(data,elemento)
               existe=result.existe;
             });
            var conexion= $('#td_'+imei+' #estado_dispositivo').val();
-           console.log(existe);
+     
          if(conexion=="Conectado")
          {
                 if(existe)
@@ -538,6 +539,7 @@ function buscar(data,elemento)
                 if(result.length!=0)
                 { 
                     var arregloruta=[];
+                    
                     for(var i=0;i<(result.length-1);i++)
                     {
                         var cadena=result[i].cadena;
@@ -696,6 +698,16 @@ function buscar(data,elemento)
 		        var velocidad = cadena.split(',');
         		var mph=parseFloat(velocidad[10]);
         return mph;
+      }
+      else if(nombre=="QUECLINK GV300")
+      {
+        
+     
+        return parseFloat(tracker_queclink(cadena));
+      }
+      else
+      {
+        return 0;
       }
       
     }

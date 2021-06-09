@@ -361,14 +361,19 @@ if (!function_exists('find_dispositivo')) {
       // Log::info($imei);
         
        $valor=DB::table('estadodispositivo')->where('cadena','like','%'.$imei.'%')->orderByDesc('fecha')->first();
-        if($valor=="")
+        if($valor!="")
         {
             $valor=DB::table('estadodispositivo')->where('imei','like','%'.$imei.'%')->orderByDesc('fecha')->first();
+            if($valor->estado=="Desconectado")
+            {
+                $existe=false;
+            }
         }
-        if($valor->estado=="Desconectado")
+        else
         {
             $existe=false;
-        }	
+        }
+        	
             return $existe;
         }
 }
@@ -377,14 +382,19 @@ if (!function_exists('find_dispositivo_movimiento')) {
     {
        $existe=true;
        $valor=DB::table('estadodispositivo')->where('cadena','like','%'.$imei.'%')->orderByDesc('fecha')->first();
-       if($valor=="")
+       if($valor!="")
                {
                    $valor=DB::table('estadodispositivo')->where('imei','like','%'.$imei.'%')->orderByDesc('fecha')->first();
-               }
-	if($valor->movimiento=="Sin Movimiento")
-	{
-         $existe=false;
-	}	
+                        if($valor->movimiento=="Sin Movimiento")
+                    {
+                        $existe=false;
+                    }	
+                }
+                else 
+                {
+                    $existe=false;
+                }
+
         return $existe; 
     }
 }
@@ -392,23 +402,7 @@ if (!function_exists('find_dispositivo_movimiento')) {
 if (!function_exists('dispositivogps_user')) {
     function dispositivogps_user(User $user)
     {
-/*
-        if($user->tipo=='ADMIN')
-        {
-           return DB::select("SELECT t1.* FROM (select d.color,u.id,u.imei,u.cadena,u.lat,u.lng,u.fecha,d.placa,d.marca,d.modelo,d.nombre from detallecontrato as dc inner join dispositivo as d on d.id=dc.dispositivo_id inner join contrato as c on c.id=dc.contrato_id inner join ubicacion as u on u.imei=d.imei where d.estado='ACTIVO' and c.estado='ACTIVO') t1 INNER JOIN (SELECT tabla.imei, MAX(tabla.fecha) as fecha FROM (select u.imei,u.lat,u.lng,u.fecha from detallecontrato as dc inner join dispositivo as d on d.id=dc.dispositivo_id inner join contrato as c on c.id=dc.contrato_id inner join ubicacion as u on u.imei=d.imei where d.estado='ACTIVO' and c.estado='ACTIVO' and u.lat!=0 and u.lng!=0 ) as tabla GROUP BY  tabla.imei ) t2 ON t1.imei = t2.imei AND t1.fecha = t2.fecha;");
-        }
-        else if($user->tipo=='CLIENTE')
-        {
-           
-            $cliente=DB::table('clientes')->where('user_id',$user->id)->first();
-           return DB::select("SELECT t1.* FROM (select d.color,u.id,u.imei,u.cadena,u.lat,u.lng,u.fecha,d.placa,d.marca,d.modelo,d.nombre from detallecontrato as dc inner join dispositivo as d on d.id=dc.dispositivo_id inner join contrato as c on c.id=dc.contrato_id inner join ubicacion as u on u.imei=d.imei where d.estado='ACTIVO' and c.estado='ACTIVO' and c.cliente_id='".$cliente->id."') t1 INNER JOIN (SELECT tabla.imei, MAX(tabla.fecha) as fecha FROM (select u.imei,u.lat,u.lng,u.fecha from detallecontrato as dc inner join dispositivo as d on d.id=dc.dispositivo_id inner join contrato as c on c.id=dc.contrato_id inner join ubicacion as u on u.imei=d.imei where d.estado='ACTIVO' and c.estado='ACTIVO' and u.lat!=0 and u.lng!=0 and c.cliente_id='".$cliente->id."' ) as tabla GROUP BY  tabla.imei ) t2 ON t1.imei = t2.imei AND t1.fecha = t2.fecha;");
-        }
-        else if($user->tipo=='EMPRESA')
-        {
-            $empresa=DB::table('empresas')->where('user_id',$user->id)->first();
-            return DB::select("SELECT t1.* FROM (select d.color,u.id,u.imei,u.cadena,u.lat,u.lng,u.fecha,d.placa,d.marca,d.modelo,d.nombre from detallecontrato as dc inner join dispositivo as d on d.id=dc.dispositivo_id inner join contrato as c on c.id=dc.contrato_id inner join ubicacion as u on u.imei=d.imei where d.estado='ACTIVO' and c.estado='ACTIVO' and c.empresa_id='".$empresa->id."') t1 INNER JOIN (SELECT tabla.imei, MAX(tabla.fecha) as fecha FROM (select u.imei,u.lat,u.lng,u.fecha from detallecontrato as dc inner join dispositivo as d on d.id=dc.dispositivo_id inner join contrato as c on c.id=dc.contrato_id inner join ubicacion as u on u.imei=d.imei where d.estado='ACTIVO' and c.estado='ACTIVO' and u.lat!=0 and u.lng!=0 and c.empresa_id='".$empresa->id."' ) as tabla GROUP BY  tabla.imei ) t2 ON t1.imei = t2.imei AND t1.fecha = t2.fecha;");
-        }
-        */
+
         if($user->tipo=='ADMIN')
         {
             $resultado=array();

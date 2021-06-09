@@ -64,8 +64,8 @@ while (true) {
             }
             else
             {
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+               // echo "tamaño".count($tk103_data)."\n";
+               // echo "data: ".$data."\n";
             }
         }
         else if(count($tk103_data)==13)
@@ -75,8 +75,8 @@ while (true) {
               $imei=TRACKER303($tk103_data,$data,$socket);  
             }
             else{
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+                //echo "tamaño".count($tk103_data)."\n";
+               // echo "data: ".$data."\n";
             }
             
         }
@@ -87,8 +87,8 @@ while (true) {
                 $imei=QUECLINKGV300_GTMP($tk103_data,$data,$socket);
             }
             else{
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+                //echo "tamaño".count($tk103_data)."\n";
+               // echo "data: ".$data."\n";
             }
         }
         else if(count($tk103_data)==19)
@@ -100,16 +100,16 @@ while (true) {
             else if(is_numeric(strpos($tk103_data[0],"+RESP:GTANT")) || is_numeric(strpos($tk103_data[0],"+BUFF:GTANT")) )
             {
                // $imei=QUECLINKGV300_GTANT($tk103_data,$data,$socket);
-               echo "tamaño".count($tk103_data)."\n";
-                echo "Ver-data: ".$data."\n";
+               //echo "tamaño".count($tk103_data)."\n";
+               // echo "Ver-data: ".$data."\n";
             }
             else if(is_numeric(strpos($tk103_data[0],"imei")))
             {
                 $imei=TRACKER103B($tk103_data,$data,$socket);
             }
             else{
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+                //echo "tamaño".count($tk103_data)."\n";
+                //echo "data: ".$data."\n";
             }
           
         }
@@ -133,8 +133,8 @@ while (true) {
             }
             else
             {
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+               // echo "tamaño".count($tk103_data)."\n";
+              //  echo "data: ".$data."\n";
             }
         }
         else if(count($tk103_data)==22)
@@ -157,8 +157,8 @@ while (true) {
             }
             else
             {
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+                //echo "tamaño".count($tk103_data)."\n";
+               // echo "data: ".$data."\n";
             }
         }
         else if(count($tk103_data)==26)
@@ -173,8 +173,8 @@ while (true) {
                $imei=MEITRACK($tk103_data,$data,$socket); 
             }
             else{
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+                //echo "tamaño".count($tk103_data)."\n";
+                //echo "data: ".$data."\n";
             }
         }
         else if(count($tk103_data)==31)
@@ -186,8 +186,8 @@ while (true) {
             }
             else
             {
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+                //echo "tamaño".count($tk103_data)."\n";
+                //echo "data: ".$data."\n";
             }
         }
         else if(count($tk103_data)==43)
@@ -198,14 +198,14 @@ while (true) {
             }
             else
             {
-                echo "tamaño".count($tk103_data)."\n";
-                echo "data: ".$data."\n";
+                //echo "tamaño".count($tk103_data)."\n";
+                //echo "data: ".$data."\n";
             }
         }
         else
         {
-            echo "tamaño".count($tk103_data)."\n";
-            echo "data: ".$data."\n";
+            //echo "tamaño".count($tk103_data)."\n";
+            //echo "data: ".$data."\n";
         }
         $Clientes[array_search($socket, array_column($Clientes, 'socket'))]['imei']=$imei;
         $Clientes[array_search($socket, array_column($Clientes, 'socket'))]['data']=$data;
@@ -359,7 +359,7 @@ function QUECLINKGV300_GTMP($tk103_data,$data,$socket)
 {
     $imei = $tk103_data[2];
     $latitude=$tk103_data[9];
-    $longitude=$tk103_data[10];
+    $longitude=$tk103_data[8];
     $gps_fecha = nmea_to_mysql_time();
     insert_location_into_db($imei, $gps_fecha, $latitude,$longitude,$data);
     if($latitude!=0.0 && $longitude!=0.0)
