@@ -27,7 +27,7 @@ public class Main {
         String sUsuario, sClave;
         Socket s = null;
         conexion cSocket = null;
-        sUsuario="20603858957";
+        sUsuario="20601359350";
         sClave="sutran2016";
         cSocket = conexion.getConecion();
         s = cSocket.getConnection();
@@ -241,9 +241,9 @@ public class Main {
                              
                             
                          }
+                         
                         result.close();
                         statement.close();
-                      
         
                         Thread.sleep(5000);
                     }

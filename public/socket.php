@@ -1,8 +1,8 @@
 <?php
 echo "start";
 date_default_timezone_set('America/Lima');
-$ip_address = "165.227.210.131";
-$port = "6901";
+$ip_address = "159.203.72.231";
+$port = "9000";
 $server = stream_socket_server("tcp://$ip_address:$port", $errno, $errorMessage);
 if ($server === false) {
     die("stream_socket_server error: $errorMessage");
@@ -20,7 +20,7 @@ while (true) {
     if (in_array($server, $read_sockets)) {
         $new_client = stream_socket_accept($server);
         if ($new_client) {
-           // echo 'new connection: ' . stream_socket_get_name($new_client, true) . "\n";
+         //  echo 'new connection: ' . stream_socket_get_name($new_client, true) . "\n";
             $client_sockets[] = $new_client;
             $Clientes[] = array('socket' => $new_client, 'imei' => " ", 'data' => " ");
         }
@@ -30,22 +30,28 @@ while (true) {
        // echo "SOCKET: ".$socket."\n";
       //  $data = fread($socket, 256);
        //echo gettype($socket);
-          $data = fread($socket,256);
-        //echo "data: " . $data . "\n";
+          $data = fread($socket,2048);
+       // echo "data: " . $data . "\n";
         $tk103_data = explode(',', $data);
         $response = "";
         switch (count($tk103_data)) {
             case 1: // 864895031563388 -> heartbeat requires "ON" response
-                if(strpos($data,"358480080868468")===false )
+                 if(strpos(strval($data),"BP00"))
                 {
-                    $response = "ON";
-               
-                }
-                else 
-                {
+                  //  $response ="AP01";
                     //$response="\x01";
                     //echo "llego";
                 }
+                else if(strpos(strval($data),"BP05")==true)
+                {
+                 //   $response ="AP05";
+                    //$response="\x01";
+                    //echo "llego";
+                }
+                else{
+                        $response = "ON";
+                }
+                
                 
                 //echo "sent ON to client\n";
                 break;
@@ -137,7 +143,7 @@ while (true) {
                 }
                 break;
             default:
-               // echo $data;
+                //echo $data;
         }
         if (!$data) {
             $imei_gps = $Clientes[array_search($socket, array_column($Clientes, 'socket'))]['imei'];
@@ -150,6 +156,7 @@ while (true) {
             }
             continue;
         }
+       // echo $response;
         if (strlen($response) > 0) {
             fwrite($socket, $response);
         }

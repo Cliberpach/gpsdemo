@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 @section('gps-active', 'active')
-@section('reportesgeozona-active', 'active')
+@section('sutran-active', 'active')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10 col-md-10">
             <h2 style="text-transform:uppercase"><b>Reporte Sutran</b></h2>

@@ -24,7 +24,7 @@
 /*    */ {
 /*    */   private static SecretKeySpec getKeySpec() throws IOException, NoSuchAlgorithmException {
 /* 26 */     byte[] bytes = new byte[16];
-/* 27 */     File f = new File("/var/www/gpsbpmsac/public/Java/key/file");
+/* 27 */     File f = new File("/var/www/gpsdemo/public/Java/key/file");
 /*    */     
 /* 29 */     SecretKey key = null;
 /* 30 */     SecretKeySpec spec = null;
